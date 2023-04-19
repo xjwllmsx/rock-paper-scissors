@@ -65,8 +65,18 @@ const playRound = function(playerSelection, computerSelection) {
         return 'Please enter rock, paper, or scissors.'
     }
 }
-const computerSelection = getComputerChoice();
-console.log(computerSelection)
-const playerSelection = getPlayerChoice();
-console.log(playerSelection)
-console.log(playRound(playerSelection, computerSelection));
+// const computerSelection = getComputerChoice();
+// console.log(computerSelection)
+// const playerSelection = getPlayerChoice();
+// console.log(playerSelection)
+// console.log(playRound(playerSelection, computerSelection));
+
+
+// Pseudocode for game function
+PROGRAM game
+    Player plays 5 rounds of rock, paper, scissors;
+    Total number of wins is calculated;
+    Total number of loses is calculated;
+    If playerWins > computerWins THEN player wins;
+    ELSE computerWins > playerWins THEN computer wins;
+END
