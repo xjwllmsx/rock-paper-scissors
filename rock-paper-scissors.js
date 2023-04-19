@@ -21,3 +21,19 @@ const getComputerChoice = function() {
     return computerChoice
 };
 // console.log(getComputerChoice()) // Used to test if function works
+
+
+// Pseudocode for Player's Choice
+// PROGRAM playerChoice()
+//     When player inputs their selection into prompt:
+//         if player inputs rock THEN playerChoice = rock
+//         if player inputs paper THEN playerChoice = paper
+//         if player inputs scissors THEN playerChoice = scissors
+// END
+
+const getPlayerChoice = function() {
+    // A prompt captures the player's choice and converts it to all lowercase letters
+    let playerChoice = prompt('What would you like to throw this round?').toLowerCase();
+    return playerChoice
+}
+console.log(getPlayerChoice()) // Used to test if function works
