@@ -33,7 +33,7 @@ const getComputerChoice = function() {
 
 const getPlayerChoice = function() {
     // A prompt captures the player's choice and converts it to all lowercase letters
-    let playerChoice = prompt('What would you like to throw this round?').toLowerCase();
+    let playerChoice = prompt('What would you like to play: rock, paper, or scissors?').toLowerCase();
     return playerChoice
 }
 // console.log(getPlayerChoice()) // Used to test if function works
@@ -51,6 +51,10 @@ const getPlayerChoice = function() {
 // END
 
 const playRound = function(playerSelection, computerSelection) {
+    // Logs the player's choice to the console
+    console.log(`You chose: ${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)}`)
+    // Logs the computer's choice to the console
+    console.log(`Computer chose: ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)}`)
     // If the player's choice beats the computer's choice
     if((playerSelection === 'rock' && computerSelection === 'scissors') || (playerSelection === 'paper' && computerSelection === 'rock') || (playerSelection === 'scissors' && computerSelection === 'paper')) {
         return `${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)} beats ${computerSelection}. You win! 🏆`;
@@ -65,18 +69,18 @@ const playRound = function(playerSelection, computerSelection) {
         return 'Please enter rock, paper, or scissors.'
     }
 }
-// const computerSelection = getComputerChoice();
+const computerSelection = getComputerChoice();
 // console.log(computerSelection)
-// const playerSelection = getPlayerChoice();
+const playerSelection = getPlayerChoice();
 // console.log(playerSelection)
-// console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
 
 
 // Pseudocode for game function
-PROGRAM game
-    Player plays 5 rounds of rock, paper, scissors;
-    Total number of wins is calculated;
-    Total number of loses is calculated;
-    If playerWins > computerWins THEN player wins;
-    ELSE computerWins > playerWins THEN computer wins;
-END
+// PROGRAM game
+//     Player plays 5 rounds of rock, paper, scissors;
+//     Total number of wins is calculated;
+//     Total number of loses is calculated;
+//     If playerWins > computerWins THEN player wins;
+//     ELSE computerWins > playerWins THEN computer wins;
+// END
