@@ -9,11 +9,11 @@
 // Generates the Computer's choice
 const getComputerChoice = function() {
     // Randomly generate a number between 0 & 2 and assign it to the variable computerChoice
-    let computerChoice = Math.floor(Math.random() * 3);
+    let computerChoice = Math.floor(Math.random() * 3) + 1;
     // console.log(computerChoice) // Used to test the above expression
-    if(computerChoice === 0) {
+    if(computerChoice === 1) {
         computerChoice = 'rock';
-    } else if(computerChoice === 1) {
+    } else if(computerChoice === 2) {
         computerChoice = 'paper';
     } else {
         computerChoice = 'scissors';
@@ -36,4 +36,4 @@ const getPlayerChoice = function() {
     let playerChoice = prompt('What would you like to throw this round?').toLowerCase();
     return playerChoice
 }
-console.log(getPlayerChoice()) // Used to test if function works
+// console.log(getPlayerChoice()) // Used to test if function works
