@@ -51,12 +51,16 @@ const getPlayerChoice = function() {
 // END
 
 const playRound = function(playerSelection, computerSelection) {
+    // Logs the player's choice to the console
+    console.log(`You chose: ${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)}`)
+    // Logs the computer's choice to the console
+    console.log(`Computer chose: ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)}`)
     // If the player's choice beats the computer's choice
     if((playerSelection === 'rock' && computerSelection === 'scissors') || (playerSelection === 'paper' && computerSelection === 'rock') || (playerSelection === 'scissors' && computerSelection === 'paper')) {
-        return 'win'
+        return `${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)} beats ${computerSelection}. You win! 🏆`;
     // If the computer's choice beats the player's choice
     } else if((computerSelection === 'rock' && playerSelection === 'scissors') || (computerSelection === 'paper' && playerSelection === 'rock') || (computerSelection === 'scissors' && playerSelection === 'paper')) {
-        return 'lose';
+        return `${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)} beats ${playerSelection}. You lose 😢`;
     // If the player's choice and the computer's choice is the same
     } else if(playerSelection === computerSelection) {
         return 'Tie game'
@@ -65,65 +69,18 @@ const playRound = function(playerSelection, computerSelection) {
         return 'Please enter rock, paper, or scissors.'
     }
 }
-// const computerSelection = getComputerChoice();
-// // console.log(computerSelection)
-// const playerSelection = getPlayerChoice();
-// // console.log(playerSelection)
-// console.log(playRound(playerSelection, computerSelection));
+const computerSelection = getComputerChoice();
+// console.log(computerSelection)
+const playerSelection = getPlayerChoice();
+// console.log(playerSelection)
+console.log(playRound(playerSelection, computerSelection));
 
 
 // Pseudocode for game function
 // PROGRAM game
-
-//     PROGRAM playRound // Repeat (x5)
-//         WHEN player inputs their selection:
-//             IF the player's choice beats the computer's choice, THEN:
-//                 playerScore = +1;
-//                 return win;
-//             ELSE IF the computer's choice beats the player's choice, THEN:
-//                 computerScore = +1;
-//                 return lose;
-//             ELSE IF the player's choice and the computer's choice are equal, THEN:
-//                 playerScore = +0;
-//                 computerScore = +0;
-//                 return tie;
-//             ELSE,
-//                 Please enter either rock, paper, or scissors
-//     END
-
-//     PROGRAM calcWinner(playerScore, computerScore)
-//         IF playerScore > computerScore, THEN playerWins
-//         IF computerScore > playerScore, THEN computerWins
-//         ELSE no one wins
-//     END
-
+//     Player plays 5 rounds of rock, paper, scissors;
+//     Total number of wins is calculated;
+//     Total number of loses is calculated;
+//     If playerWins > computerWins THEN player wins;
+//     ELSE computerWins > playerWins THEN computer wins;
 // END
-
-const game = function() {
-    let computerSelection = getComputerChoice();
-    let playerSelection = getPlayerChoice();
-    let playerScore = 0;
-    let computerScore = 0;
-
-    // Logs the player's choice to the console
-    console.log(`You chose: ${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)}`)
-    // Logs the computer's choice to the console
-    console.log(`Computer chose: ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)}`)
-
-    if(playRound(playerSelection, computerSelection) === 'win') {
-        console.log(`${playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1)} beats ${computerSelection}. You win! 🏆`);
-        playerScore = ++playerScore
-        return console.log(`Your Score: ${playerScore}`, `Computer Score: ${computerScore}`);
-    } else if(playRound(playerSelection, computerSelection) === 'lose') {
-        console.log(`${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)} beats ${playerSelection}. You lose 😢`);
-        computerScore = ++computerScore
-        return console.log(`Your Score: ${playerScore}`, `Computer Score: ${computerScore}`);
-    } else {
-        playerScore = playerScore + 0;
-        computerScore = computerScore + 0;
-        return 'Tie game'
-    }
-    
-}
-
-console.log(game());
