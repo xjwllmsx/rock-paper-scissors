@@ -91,9 +91,9 @@ const playRound = function(playerSelection, computerSelection) {
 // The game function below is a good start, but the issue I'm having right now is that every time the letsPlay function runs, it runs with the exact same computerSelection and playerSelection, so the two games are exactly the same. I need to figure out how to make the second round run with different selections. The player will need to be prompted again.
 const game = function() {
     // A variable for the computer's selection
-    const computerSelection = getComputerChoice();
+    let computerSelection = getComputerChoice();
     // A variable for the player's selection
-    const playerSelection = getPlayerChoice();
+    let playerSelection = getPlayerChoice();
     // Player's initial score
     let playerScore = 0;
     // Computer's initial score
@@ -112,13 +112,15 @@ const game = function() {
     };
     // Calls the letsPlay function and displays it in the console
     console.log(letsPlay(playRound(playerSelection, computerSelection)))
-    console.log(playerScore) // Outputs the player's score after the first round
-    console.log(computerScore) // Outputs the computer's score after the first round
+    // console.log(playerScore) // Outputs the player's score after the first round
+    // console.log(computerScore) // Outputs the computer's score after the first round
 
     // Calls the letsPlay function a second time
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice()
     console.log(letsPlay(playRound(playerSelection, computerSelection)))
-    console.log(playerScore) // If the player won, the score will increase
-    console.log(computerScore) // If the computer won, the score will increase
+    // console.log(playerScore) // If the player won, the score will increase
+    // console.log(computerScore) // If the computer won, the score will increase
 }
 
 // Calls the game function and displays in the console.
