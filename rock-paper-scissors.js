@@ -20,8 +20,6 @@ const getComputerChoice = function() {
     };
     return computerChoice
 };
-// console.log(getComputerChoice()) // Used to test if function works
-
 
 // Pseudocode for Player's Choice
 // PROGRAM playerChoice()
@@ -36,8 +34,6 @@ const getPlayerChoice = function() {
     let playerChoice = prompt('What would you like to play: rock, paper, or scissors?').toLowerCase();
     return playerChoice
 }
-// console.log(getPlayerChoice()) // Used to test if function works
-
 
 // Pseudocode for a round of Rock, Paper, Scissors
 // PROGRAM playRound
@@ -72,23 +68,23 @@ const playRound = function(playerSelection, computerSelection) {
         return 'Please enter rock, paper, or scissors.'
     }
 }
-// const computerSelection = getComputerChoice();
-// console.log(computerSelection)
-// const playerSelection = getPlayerChoice();
-// console.log(playerSelection)
-// console.log(playRound(playerSelection, computerSelection));
-
 
 // Pseudocode for game function
 // PROGRAM game
-//     Player plays 5 rounds of rock, paper, scissors;
-//     Total number of wins is calculated;
-//     Total number of loses is calculated;
-//     If playerWins > computerWins THEN player wins;
-//     ELSE computerWins > playerWins THEN computer wins;
-// END
+//     Run playRound;
+//     PROGRAM letsPlay
+//         If the player wins playRound, their score increases;
+//         If the computer wins playRound, its score increases;
+//         If the player & computer tie in playRound, no points are added to either score
+//     END
 
-// The game function below is a good start, but the issue I'm having right now is that every time the letsPlay function runs, it runs with the exact same computerSelection and playerSelection, so the two games are exactly the same. I need to figure out how to make the second round run with different selections. The player will need to be prompted again.
+//     PROGRAM calcWinner
+//         If player's score is GREATER than the computer's score, THEN the player wins;
+//         If the computer's score is GREATER than the player's score, THEN the computer wins;
+//         If the player nad computer's scores are the same, no one wins
+//     END
+// // END
+
 const game = function() {
     // A variable for the computer's selection
     let computerSelection = getComputerChoice();
@@ -106,22 +102,42 @@ const game = function() {
         } else if (round === 'lose') {
             return computerScore = ++computerScore;
         } else {
-            playerScore = playerScore + 0
-            computerScore = computerScore + 0
+            return 0
         }
     };
-    // Calls the letsPlay function and displays it in the console
-    console.log(letsPlay(playRound(playerSelection, computerSelection)))
-    // console.log(playerScore) // Outputs the player's score after the first round
-    // console.log(computerScore) // Outputs the computer's score after the first round
-
+    // Call the letsPlay function for the first round
+    letsPlay(playRound(playerSelection, computerSelection));
     // Calls the letsPlay function a second time
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice()
-    console.log(letsPlay(playRound(playerSelection, computerSelection)))
-    // console.log(playerScore) // If the player won, the score will increase
-    // console.log(computerScore) // If the computer won, the score will increase
+    letsPlay(playRound(playerSelection, computerSelection))
+    // Calls the letsPlay function a third time
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice()
+    letsPlay(playRound(playerSelection, computerSelection))
+    // Calls the letsPlay function a fourth time
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice()
+    letsPlay(playRound(playerSelection, computerSelection))
+    // Calls the letsPlay function a fifth time
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice()
+    letsPlay(playRound(playerSelection, computerSelection))
+
+    // This calculates who wins based on the cumulative scores.
+    const calcWinner = function(playerScore, computerScore) {
+        if(playerScore > computerScore) {
+            return `You win (${playerScore} vs ${computerScore}!)`;
+        } else if(computerScore > playerScore) {
+            return `You lose (${playerScore} vs ${computerScore}. Try again!)`
+        } else {
+            return `Tie game (${playerScore} vs ${computerScore})`
+        };
+    }
+
+    // Returns the result of the function
+    return calcWinner(playerScore, computerScore)
 }
 
 // Calls the game function and displays in the console.
-console.log(game()); // undefined
+console.log(game());
