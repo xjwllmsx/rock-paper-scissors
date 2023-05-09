@@ -1,11 +1,3 @@
-// Pseudocode for getComputerChoice
-// PROGRAM getComputerChoice
-//     Generate random number between 1 and 3
-//         IF 1 is selected THEN computerChoice = rock
-//         IF 2 is selected THEN computerChoice = paper
-//         IF 3 is selected THEN computerChoice = scissors
-// END
-
 // Generates the Computer's choice
 const getComputerChoice = function() {
     // Randomly generate a number between 1 & 3 and assign it to the variable computerChoice
@@ -21,30 +13,12 @@ const getComputerChoice = function() {
     return computerChoice
 };
 
-// Pseudocode for Player's Choice
-// PROGRAM playerChoice()
-//     When player inputs their selection into prompt:
-//         if player inputs rock THEN playerChoice = rock
-//         if player inputs paper THEN playerChoice = paper
-//         if player inputs scissors THEN playerChoice = scissors
-// END
-
+// Update: Needs to take in button selection instead of answer to prompt
 const getPlayerChoice = function() {
     // A prompt captures the player's choice and converts it to all lowercase letters
     let playerChoice = prompt('What would you like to play: rock, paper, or scissors?').toLowerCase();
     return playerChoice
 }
-
-// Pseudocode for a round of Rock, Paper, Scissors
-// PROGRAM playRound
-//     WHEN player inputs their selection:
-//         IF the player's choice beats the computer's choice,
-//             'You win!'
-//         ELSE IF the computer's choice beats the player's choice,
-//             'You lose!'
-//         ELSE,
-//             'Tie game!'
-// END
 
 const playRound = function(playerSelection, computerSelection) {
     // Logs the player's choice to the console
@@ -68,22 +42,6 @@ const playRound = function(playerSelection, computerSelection) {
         return 'Please enter rock, paper, or scissors.'
     }
 }
-
-// Pseudocode for game function
-// PROGRAM game
-//     Run playRound;
-//     PROGRAM letsPlay
-//         If the player wins playRound, their score increases;
-//         If the computer wins playRound, its score increases;
-//         If the player & computer tie in playRound, no points are added to either score
-//     END
-
-//     PROGRAM calcWinner
-//         If player's score is GREATER than the computer's score, THEN the player wins;
-//         If the computer's score is GREATER than the player's score, THEN the computer wins;
-//         If the player nad computer's scores are the same, no one wins
-//     END
-// // END
 
 const game = function() {
     // A variable for the computer's selection
@@ -140,4 +98,4 @@ const game = function() {
 }
 
 // Calls the game function and displays in the console.
-console.log(game());
+// console.log(game());
