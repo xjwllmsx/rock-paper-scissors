@@ -1,3 +1,8 @@
+// Selecting elements
+const btnRock = document.getElementById('btn--rock');
+const btnPaper = document.getElementById('btn--paper');
+const btnScissors = document.getElementById('btn--scissors');
+
 // Generates the Computer's choice
 const getComputerChoice = function () {
   // Randomly generate a number between 1 & 3 and assign it to the variable computerChoice
@@ -14,38 +19,39 @@ const getComputerChoice = function () {
 };
 
 // Update: Needs to take in button selection instead of answer to prompt
-const getPlayerChoice = function () {
+const getPlayerChoice = function (selection) {
+  let playerChoice = selection;
   // A prompt captures the player's choice and converts it to all lowercase letters
-  let playerChoice = prompt(
-    'What would you like to play: rock, paper, or scissors?'
-  ).toLowerCase();
-  return playerChoice;
+  // let playerChoice = prompt(
+  //   'What would you like to play: rock, paper, or scissors?'
+  // ).toLowerCase();
+  return playerChoice.toLowerCase();
 };
 
 const playRound = function (playerSelection, computerSelection) {
-  // Logs the player's choice to the console
-  console.log(
-    `You chose: ${
-      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-    }`
-  );
-  // Logs the computer's choice to the console
-  console.log(
-    `Computer chose: ${
-      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-    }`
-  );
+  // // Logs the player's choice to the console
+  // console.log(
+  //   `You chose: ${
+  //     playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+  //   }`
+  // );
+  // // Logs the computer's choice to the console
+  // console.log(
+  //   `Computer chose: ${
+  //     computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+  //   }`
+  // );
   // If the player's choice beats the computer's choice
   if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'paper' && computerSelection === 'rock') ||
     (playerSelection === 'scissors' && computerSelection === 'paper')
   ) {
-    console.log(
-      `${
-        playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-      } beats ${computerSelection}. You win! 🏆`
-    );
+    // console.log(
+    //   `${
+    //     playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    //   } beats ${computerSelection}. You win! 🏆`
+    // );
     return 'win';
     // If the computer's choice beats the player's choice
   } else if (
@@ -53,15 +59,15 @@ const playRound = function (playerSelection, computerSelection) {
     (computerSelection === 'paper' && playerSelection === 'rock') ||
     (computerSelection === 'scissors' && playerSelection === 'paper')
   ) {
-    console.log(
-      `${
-        computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-      } beats ${playerSelection}. You lose 😢`
-    );
+    // console.log(
+    //   `${
+    //     computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    //   } beats ${playerSelection}. You lose 😢`
+    // );
     return 'lose';
     // If the player's choice and the computer's choice is the same
   } else if (playerSelection === computerSelection) {
-    console.log('Tie game');
+    // console.log('Tie game');
     return 'tie';
     // If neither rock, paper, or scissors was entered as the player's choice
   } else {
@@ -125,3 +131,7 @@ const game = function () {
 
 // Calls the game function and displays in the console.
 // console.log(game());
+
+btnRock.addEventListener('click', function () {
+  console.log(playRound(getPlayerChoice(btnRock.textContent), getComputerChoice()));
+});
