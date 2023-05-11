@@ -22,6 +22,15 @@ displayPlayerScore.textContent = `Your Score: ${playerScore}`;
 let computerScore = 0;
 displayComputerScore.textContent = `Computer Score: ${computerScore}`;
 
+const init = function () {
+  playerScore = 0;
+  computerScore = 0;
+
+  displayPlayerScore.textContent = `Your Score: ${playerScore}`;
+  displayComputerScore.textContent = `Computer Score: ${computerScore}`;
+};
+init();
+
 // Generates the Computer's choice
 const getComputerChoice = function () {
   // Randomly generate a number between 1 & 3 and assign it to the variable computerChoice
@@ -149,29 +158,29 @@ const game = function () {
 btnRock.addEventListener('click', function () {
   playRound('rock', getComputerChoice());
   if (playerScore === 5) {
-    display.appendChild(endGameMessage)
-    endGameMessage.textContent = `Game over! You annihilated the computer!`
+    display.appendChild(endGameMessage);
+    endGameMessage.textContent = `Game over! You annihilated the computer!`;
   } else if (computerScore === 5) {
-    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`
+    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`;
   }
 });
 btnPaper.addEventListener('click', function () {
   playRound('paper', getComputerChoice());
   if (playerScore === 5) {
-    display.appendChild(endGameMessage)
-    endGameMessage.textContent = `Game over! You annihilated the computer!`
+    display.appendChild(endGameMessage);
+    endGameMessage.textContent = `Game over! You annihilated the computer!`;
   } else if (computerScore === 5) {
-    display.appendChild(endGameMessage)
-    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`
+    display.appendChild(endGameMessage);
+    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`;
   }
 });
 btnScissors.addEventListener('click', function () {
   playRound('scissors', getComputerChoice());
   if (playerScore === 5) {
-    display.appendChild(endGameMessage)
-    endGameMessage.textContent = `Game over! You annihilated the computer!`
+    display.appendChild(endGameMessage);
+    endGameMessage.textContent = `Game over! You annihilated the computer!`;
   } else if (computerScore === 5) {
-    display.appendChild(endGameMessage)
-    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`
+    display.appendChild(endGameMessage);
+    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`;
   }
 });
