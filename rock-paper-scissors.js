@@ -1,13 +1,31 @@
+'use strict';
+
 // Selecting elements
 const btnRock = document.getElementById('btn--rock');
 const btnPaper = document.getElementById('btn--paper');
 const btnScissors = document.getElementById('btn--scissors');
+const display = document.getElementById('display');
+const displayPlayerChoice = document.createElement('p');
+const displayComputerChoice = document.createElement('p');
+const displayGameResults = document.createElement('p');
+const displayPlayerScore = document.createElement('p');
+const displayComputerScore = document.createElement('p');
+const endGameMessage = document.createElement('p');
+
+display.appendChild(displayPlayerScore);
+display.appendChild(displayComputerScore);
+
+// Player's initial score
+let playerScore = 0;
+displayPlayerScore.textContent = `Your Score: ${playerScore}`;
+// Computer's initial score
+let computerScore = 0;
+displayComputerScore.textContent = `Computer Score: ${computerScore}`;
 
 // Generates the Computer's choice
 const getComputerChoice = function () {
   // Randomly generate a number between 1 & 3 and assign it to the variable computerChoice
   let computerChoice = Math.floor(Math.random() * 3) + 1;
-  // console.log(computerChoice) // Used to test the above expression
   if (computerChoice === 1) {
     computerChoice = 'rock';
   } else if (computerChoice === 2) {
@@ -18,6 +36,7 @@ const getComputerChoice = function () {
   return computerChoice;
 };
 
+/*
 // Update: Needs to take in button selection instead of answer to prompt
 const getPlayerChoice = function (selection) {
   let playerChoice = selection;
@@ -27,51 +46,50 @@ const getPlayerChoice = function (selection) {
   // ).toLowerCase();
   return playerChoice.toLowerCase();
 };
+*/
 
 const playRound = function (playerSelection, computerSelection) {
   // Logs the player's choice to the console
-  console.log(
-    `You chose: ${
-      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-    }`
-  );
+  displayPlayerChoice.textContent = `You chose: ${
+    playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+  }`;
+  display.appendChild(displayPlayerChoice);
+
   // Logs the computer's choice to the console
-  console.log(
-    `Computer chose: ${
-      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-    }`
-  );
+  displayComputerChoice.textContent = `Computer chose: ${
+    computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+  }`;
+  display.appendChild(displayComputerChoice);
+
   // If the player's choice beats the computer's choice
   if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'paper' && computerSelection === 'rock') ||
     (playerSelection === 'scissors' && computerSelection === 'paper')
   ) {
-    console.log(
-      `${
-        playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-      } beats ${computerSelection}. You win! 🏆`
-    );
-    return 'win';
+    displayGameResults.textContent = `${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    } beats ${computerSelection}. You win! 🏆`;
+    display.appendChild(displayGameResults);
+    displayPlayerScore.textContent = `Your Score: ${++playerScore}`;
+    return playerScore;
     // If the computer's choice beats the player's choice
   } else if (
     (computerSelection === 'rock' && playerSelection === 'scissors') ||
     (computerSelection === 'paper' && playerSelection === 'rock') ||
     (computerSelection === 'scissors' && playerSelection === 'paper')
   ) {
-    console.log(
-      `${
-        computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-      } beats ${playerSelection}. You lose 😢`
-    );
-    return 'lose';
+    displayGameResults.textContent = `${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    } beats ${playerSelection}. You lose 😢`;
+    display.appendChild(displayGameResults);
+    displayComputerScore.textContent = `Your Score: ${++computerScore}`;
+    return computerScore;
     // If the player's choice and the computer's choice is the same
   } else if (playerSelection === computerSelection) {
-    // console.log('Tie game');
+    displayGameResults.textContent = 'Tie game';
+    display.appendChild(displayGameResults);
     return 'tie';
-    // If neither rock, paper, or scissors was entered as the player's choice
-  } else {
-    return 'Please enter rock, paper, or scissors.';
   }
 };
 
@@ -80,10 +98,6 @@ const game = function () {
   let computerSelection = getComputerChoice();
   // A variable for the player's selection
   let playerSelection = getPlayerChoice();
-  // Player's initial score
-  let playerScore = 0;
-  // Computer's initial score
-  let computerScore = 0;
 
   // This function runs a round of rock, paper, scissors and outputs a score
   const letsPlay = function (round) {
@@ -133,11 +147,31 @@ const game = function () {
 // console.log(game());
 
 btnRock.addEventListener('click', function () {
-  console.log((playRound('rock', getComputerChoice())));
+  playRound('rock', getComputerChoice());
+  if (playerScore === 5) {
+    display.appendChild(endGameMessage)
+    endGameMessage.textContent = `Game over! You annihilated the computer!`
+  } else if (computerScore === 5) {
+    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`
+  }
 });
 btnPaper.addEventListener('click', function () {
-  console.log((playRound('paper', getComputerChoice())));
+  playRound('paper', getComputerChoice());
+  if (playerScore === 5) {
+    display.appendChild(endGameMessage)
+    endGameMessage.textContent = `Game over! You annihilated the computer!`
+  } else if (computerScore === 5) {
+    display.appendChild(endGameMessage)
+    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`
+  }
 });
 btnScissors.addEventListener('click', function () {
-  console.log((playRound('scissors', getComputerChoice())));
+  playRound('scissors', getComputerChoice());
+  if (playerScore === 5) {
+    display.appendChild(endGameMessage)
+    endGameMessage.textContent = `Game over! You annihilated the computer!`
+  } else if (computerScore === 5) {
+    display.appendChild(endGameMessage)
+    endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`
+  }
 });
