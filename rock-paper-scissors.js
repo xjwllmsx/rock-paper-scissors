@@ -29,29 +29,29 @@ const getPlayerChoice = function (selection) {
 };
 
 const playRound = function (playerSelection, computerSelection) {
-  // // Logs the player's choice to the console
-  // console.log(
-  //   `You chose: ${
-  //     playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-  //   }`
-  // );
-  // // Logs the computer's choice to the console
-  // console.log(
-  //   `Computer chose: ${
-  //     computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-  //   }`
-  // );
+  // Logs the player's choice to the console
+  console.log(
+    `You chose: ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    }`
+  );
+  // Logs the computer's choice to the console
+  console.log(
+    `Computer chose: ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }`
+  );
   // If the player's choice beats the computer's choice
   if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'paper' && computerSelection === 'rock') ||
     (playerSelection === 'scissors' && computerSelection === 'paper')
   ) {
-    // console.log(
-    //   `${
-    //     playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-    //   } beats ${computerSelection}. You win! 🏆`
-    // );
+    console.log(
+      `${
+        playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+      } beats ${computerSelection}. You win! 🏆`
+    );
     return 'win';
     // If the computer's choice beats the player's choice
   } else if (
@@ -59,11 +59,11 @@ const playRound = function (playerSelection, computerSelection) {
     (computerSelection === 'paper' && playerSelection === 'rock') ||
     (computerSelection === 'scissors' && playerSelection === 'paper')
   ) {
-    // console.log(
-    //   `${
-    //     computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-    //   } beats ${playerSelection}. You lose 😢`
-    // );
+    console.log(
+      `${
+        computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+      } beats ${playerSelection}. You lose 😢`
+    );
     return 'lose';
     // If the player's choice and the computer's choice is the same
   } else if (playerSelection === computerSelection) {
@@ -133,5 +133,11 @@ const game = function () {
 // console.log(game());
 
 btnRock.addEventListener('click', function () {
-  console.log(playRound(getPlayerChoice(btnRock.textContent), getComputerChoice()));
+  console.log((playRound('rock', getComputerChoice())));
+});
+btnPaper.addEventListener('click', function () {
+  console.log((playRound('paper', getComputerChoice())));
+});
+btnScissors.addEventListener('click', function () {
+  console.log((playRound('scissors', getComputerChoice())));
 });
