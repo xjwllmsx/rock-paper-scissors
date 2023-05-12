@@ -4,6 +4,7 @@
 const btnRock = document.getElementById('btn--rock');
 const btnPaper = document.getElementById('btn--paper');
 const btnScissors = document.getElementById('btn--scissors');
+const btnNewGame = document.getElementById('btn--new');
 const display = document.getElementById('display');
 const displayPlayerChoice = document.createElement('p');
 const displayComputerChoice = document.createElement('p');
@@ -15,21 +16,28 @@ const endGameMessage = document.createElement('p');
 display.appendChild(displayPlayerScore);
 display.appendChild(displayComputerScore);
 
-// Player's initial score
-let playerScore = 0;
-displayPlayerScore.textContent = `Your Score: ${playerScore}`;
-// Computer's initial score
-let computerScore = 0;
-displayComputerScore.textContent = `Computer Score: ${computerScore}`;
+// Starting conditions
+let playerScore, computerScore, playing;
 
 const init = function () {
   playerScore = 0;
   computerScore = 0;
+  playing = true;
 
   displayPlayerScore.textContent = `Your Score: ${playerScore}`;
   displayComputerScore.textContent = `Computer Score: ${computerScore}`;
+
+  btnNewGame.classList.add('hidden');
 };
 init();
+
+btnNewGame.addEventListener('click', function () {
+  init();
+  display.removeChild(displayComputerChoice);
+  display.removeChild(displayPlayerChoice);
+  display.removeChild(displayGameResults);
+  display.removeChild(endGameMessage);
+});
 
 // Generates the Computer's choice
 const getComputerChoice = function () {
@@ -156,31 +164,51 @@ const game = function () {
 // console.log(game());
 
 btnRock.addEventListener('click', function () {
-  playRound('rock', getComputerChoice());
+  if (playing) {
+    playRound('rock', getComputerChoice());
+  }
   if (playerScore === 5) {
+    playing = false;
     display.appendChild(endGameMessage);
     endGameMessage.textContent = `Game over! You annihilated the computer!`;
+    btnNewGame.classList.remove('hidden');
   } else if (computerScore === 5) {
+    playing = false;
+    display.appendChild(endGameMessage);
     endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`;
+    btnNewGame.classList.remove('hidden');
   }
 });
 btnPaper.addEventListener('click', function () {
-  playRound('paper', getComputerChoice());
+  if (playing) {
+    playRound('paper', getComputerChoice());
+  }
+
   if (playerScore === 5) {
+    playing = false;
     display.appendChild(endGameMessage);
     endGameMessage.textContent = `Game over! You annihilated the computer!`;
+    btnNewGame.classList.remove('hidden');
   } else if (computerScore === 5) {
+    playing = false;
     display.appendChild(endGameMessage);
     endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`;
+    btnNewGame.classList.remove('hidden');
   }
 });
 btnScissors.addEventListener('click', function () {
-  playRound('scissors', getComputerChoice());
+  if (playing) {
+    playRound('scissors', getComputerChoice());
+  }
   if (playerScore === 5) {
+    playing = false;
     display.appendChild(endGameMessage);
     endGameMessage.textContent = `Game over! You annihilated the computer!`;
+    btnNewGame.classList.remove('hidden');
   } else if (computerScore === 5) {
+    playing = false;
     display.appendChild(endGameMessage);
     endGameMessage.textContent = `Game over! Looks like you got pwned by the computer. Better luck next time!`;
+    btnNewGame.classList.remove('hidden');
   }
 });
