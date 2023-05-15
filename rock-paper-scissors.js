@@ -4,17 +4,14 @@
 const btnRock = document.getElementById('btn--rock');
 const btnPaper = document.getElementById('btn--paper');
 const btnScissors = document.getElementById('btn--scissors');
-const btnNewGame = document.getElementById('btn--new');
-const display = document.getElementById('display');
+// const btnNewGame = document.getElementById('btn--new');
+const display = document.querySelector('.display');
+const displayPlayerScore = document.getElementById('player--score');
+const displayComputerScore = document.getElementById('computer--score');
 const displayPlayerChoice = document.createElement('p');
 const displayComputerChoice = document.createElement('p');
 const displayGameResults = document.createElement('p');
-const displayPlayerScore = document.createElement('p');
-const displayComputerScore = document.createElement('p');
 const endGameMessage = document.createElement('p');
-
-display.appendChild(displayPlayerScore);
-display.appendChild(displayComputerScore);
 
 // Starting conditions
 let playerScore, computerScore, playing;
@@ -24,20 +21,21 @@ const init = function () {
   computerScore = 0;
   playing = true;
 
-  displayPlayerScore.textContent = `Your Score: ${playerScore}`;
-  displayComputerScore.textContent = `Computer Score: ${computerScore}`;
+  displayPlayerScore.textContent = `${playerScore}`;
+  displayComputerScore.textContent = `${computerScore}`;
 
-  btnNewGame.classList.add('hidden');
+  // btnNewGame.classList.add('hidden');
+  // display.classList.add('hidden');
 };
 init();
 
-btnNewGame.addEventListener('click', function () {
-  init();
-  display.removeChild(displayComputerChoice);
-  display.removeChild(displayPlayerChoice);
-  display.removeChild(displayGameResults);
-  display.removeChild(endGameMessage);
-});
+// btnNewGame.addEventListener('click', function () {
+//   init();
+//   display.removeChild(displayComputerChoice);
+//   display.removeChild(displayPlayerChoice);
+//   display.removeChild(displayGameResults);
+//   display.removeChild(endGameMessage);
+// });
 
 // Generates the Computer's choice
 const getComputerChoice = function () {
@@ -66,13 +64,15 @@ const getPlayerChoice = function (selection) {
 */
 
 const playRound = function (playerSelection, computerSelection) {
-  // Logs the player's choice to the console
+  // Displays the player's choice
+  display.classList.remove('hidden')
   displayPlayerChoice.textContent = `You chose: ${
     playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
   }`;
   display.appendChild(displayPlayerChoice);
 
-  // Logs the computer's choice to the console
+  // Displays the computer's choice
+  display.classList.remove('hidden')
   displayComputerChoice.textContent = `Computer chose: ${
     computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
   }`;
@@ -88,7 +88,7 @@ const playRound = function (playerSelection, computerSelection) {
       playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
     } beats ${computerSelection}. You win! 🏆`;
     display.appendChild(displayGameResults);
-    displayPlayerScore.textContent = `Your Score: ${++playerScore}`;
+    displayPlayerScore.textContent = `${++playerScore}`;
     return playerScore;
     // If the computer's choice beats the player's choice
   } else if (
@@ -100,7 +100,7 @@ const playRound = function (playerSelection, computerSelection) {
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     } beats ${playerSelection}. You lose 😢`;
     display.appendChild(displayGameResults);
-    displayComputerScore.textContent = `Your Score: ${++computerScore}`;
+    displayComputerScore.textContent = `${++computerScore}`;
     return computerScore;
     // If the player's choice and the computer's choice is the same
   } else if (playerSelection === computerSelection) {
