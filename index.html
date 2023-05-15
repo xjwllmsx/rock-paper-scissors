@@ -1,18 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper Scissors</title>
-    <link rel="stylesheet" href="./stylesheet.css">
-</head>
-<body>
-    <button id="btn--rock">Rock</button>
-    <button id="btn--paper">Paper</button>
-    <button id="btn--scissors">Scissors</button>
-    <div id="display"></div>
-    <button id="btn--new" class="hidden">New Game</button>
-</body>
-<script src="rock-paper-scissors.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="./stylesheet.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Container -->
+        <div class="container">
+            <!-- Scores -->
+            <div class="row--scores">
+                <!-- Your Score -->
+                <div class="scores">
+                    <p>Your Score: <span id="player--score">0</span></p>
+                </div>
+                <!-- Computer Score -->
+                <div class="scores">
+                    <p>Computer Score: <span id="computer--score">0</span></p>
+                </div>
+            <!-- End of Scores -->
+            </div>
+
+            <!-- Title -->
+            <div class="title">
+                <h1>Choose your weapon</h1>
+                <p>First to 5 Wins!</p>
+            <!-- End of Title -->
+            </div>
+
+            <!-- Buttons -->
+            <div class="buttons">
+                <!-- Rock -->
+                <div class="button">
+                    <img src="./images/rock.svg" alt="Rock" id="btn--rock">
+                    <p>Rock</p>
+                </div>
+                <!-- Paper -->
+                <div class="button">
+                    <img src="./images/paper.svg" alt="Paper" id="btn--paper">
+                    <p>Paper</p>
+                </div>
+                <!-- Scissors -->
+                <div class="button">
+                    <img src="./images/scissors.svg" alt="Scissors" id="btn--scissors">
+                    <p>Scissors</p>
+                </div>
+            <!-- End of Buttons -->
+            </div>
+            
+            <!-- Message -->
+            <div class="display hidden">
+            <!-- End of Message -->
+            </div>
+
+            <!-- Game Over -->
+            <div class="game-over hidden">
+                <h1>Game Over</h1>
+            <!-- End of Game Over -->
+            </div>
+            
+            <button id="btn--new" class="hidden">New Game</button>
+        <!-- End of Container -->
+        </div>
+    </body>
+    <script src="rock-paper-scissors.js"></script>
 </html>
