@@ -21,16 +21,6 @@ const endGameMessage = document.createElement('p');
 // Starting conditions
 let playerScore, computerScore, playing;
 
-const openModal = function () {
-    gameOver.classList.remove('hidden');
-    overlay.classList.remove('hidden');
-};
-
-const closeModal = function () {
-    gameOver.classList.add('hidden');
-    overlay.classList.add('hidden');
-};
-
 const init = function () {
     playerScore = 0;
     computerScore = 0;
@@ -39,15 +29,14 @@ const init = function () {
     displayPlayerScore.textContent = `${playerScore}`;
     displayComputerScore.textContent = `${computerScore}`;
 
-    closeModal();
-
+    gameOver.classList.add('hidden');
+    overlay.classList.add('hidden');
     displayRoundMessage.classList.add('hidden');
 };
 init();
 
 btnNewGame.addEventListener('click', init);
 btnCloseModal.addEventListener('click', init);
-// overlay.addEventListener('click', init);
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !gameOver.classList.contains('hidden')) {
         init();
@@ -67,18 +56,6 @@ const getComputerChoice = function () {
     }
     return computerChoice;
 };
-
-/*
-// Update: Needs to take in button selection instead of answer to prompt
-const getPlayerChoice = function (selection) {
-  let playerChoice = selection;
-  // A prompt captures the player's choice and converts it to all lowercase letters
-  // let playerChoice = prompt(
-  //   'What would you like to play: rock, paper, or scissors?'
-  // ).toLowerCase();
-  return playerChoice.toLowerCase();
-};
-*/
 
 const playRound = function (playerSelection, computerSelection) {
     // Displays the player's choice
@@ -126,59 +103,6 @@ const playRound = function (playerSelection, computerSelection) {
         return 'tie';
     }
 };
-
-const game = function () {
-    // A variable for the computer's selection
-    let computerSelection = getComputerChoice();
-    // A variable for the player's selection
-    let playerSelection = getPlayerChoice();
-
-    // This function runs a round of rock, paper, scissors and outputs a score
-    const letsPlay = function (round) {
-        if (round === 'win') {
-            return (playerScore = ++playerScore);
-        } else if (round === 'lose') {
-            return (computerScore = ++computerScore);
-        } else {
-            return 0;
-        }
-    };
-    // Call the letsPlay function for the first round
-    letsPlay(playRound(playerSelection, computerSelection));
-    // Calls the letsPlay function a second time
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-    letsPlay(playRound(playerSelection, computerSelection));
-    // Calls the letsPlay function a third time
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-    letsPlay(playRound(playerSelection, computerSelection));
-    // Calls the letsPlay function a fourth time
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-    letsPlay(playRound(playerSelection, computerSelection));
-    // Calls the letsPlay function a fifth time
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-    letsPlay(playRound(playerSelection, computerSelection));
-
-    // This calculates who wins based on the cumulative scores.
-    const calcWinner = function (playerScore, computerScore) {
-        if (playerScore > computerScore) {
-            return `You win (${playerScore} vs ${computerScore}!)`;
-        } else if (computerScore > playerScore) {
-            return `You lose (${playerScore} vs ${computerScore}. Try again!)`;
-        } else {
-            return `Tie game (${playerScore} vs ${computerScore})`;
-        }
-    };
-
-    // Returns the result of the function
-    return calcWinner(playerScore, computerScore);
-};
-
-// Calls the game function and displays in the console.
-// console.log(game());
 
 const playerWinsGame = function () {
     playing = false;
