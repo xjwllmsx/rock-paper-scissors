@@ -1,5 +1,7 @@
 body {
     background-image: url(./images/rps-background.svg);
+    font-family: 'Gaegu', cursive;
+    color: white;
 }
 
 .container {
@@ -10,24 +12,21 @@ body {
     max-width: 1000px;
 }
 
-h1{
+h1 {
     font-family: 'Gaegu', cursive;
     font-size: 48px;
     font-weight: 700;
     line-height: 60px;
     text-align: center;
     margin: 0px;
-    color: rgba(255, 255, 255, 1);
 }
 
 p {
-    font-family: 'Gaegu', cursive;
     font-size: 36px;
     font-weight: 400;
     line-height: 45px;
     text-align: center;
     margin: 0px;
-    color: rgba(255, 255, 255, 1);
 }
 
 .row--scores {
@@ -35,7 +34,7 @@ p {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: 40px
+    margin-top: 40px;
 }
 
 .scores {
@@ -65,7 +64,7 @@ p {
     cursor: pointer;
 }
 
-.display {
+.display--round-message {
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -76,7 +75,7 @@ p {
     text-align: center;
 }
 
-.display p {
+.display--round-message p {
     color: rgba(180, 168, 84, 1);
 }
 
@@ -89,6 +88,52 @@ p {
     margin: 0px;
     line-height: 43.57px;
     cursor: pointer;
+    max-width: 235px;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background-color: white;
+    padding: 6rem;
+    border-radius: 20px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    background-color: #0b1037;
+}
+
+.game-over .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 65px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+    font-size: 5rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
 }
 
 .hidden {

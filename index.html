@@ -6,9 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rock Paper Scissors</title>
         <link rel="stylesheet" href="./stylesheet.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <!-- Container -->
@@ -23,50 +26,68 @@
                 <div class="scores">
                     <p>Computer Score: <span id="computer--score">0</span></p>
                 </div>
-            <!-- End of Scores -->
+                <!-- End of Scores -->
             </div>
 
             <!-- Title -->
             <div class="title">
                 <h1>Choose your weapon</h1>
                 <p>First to 5 Wins!</p>
-            <!-- End of Title -->
+                <!-- End of Title -->
             </div>
 
             <!-- Buttons -->
             <div class="buttons">
                 <!-- Rock -->
                 <div class="button">
-                    <img src="./images/rock.svg" alt="Rock" id="btn--rock">
+                    <img src="./images/rock.svg" alt="Rock" id="btn--rock" />
                     <p>Rock</p>
                 </div>
                 <!-- Paper -->
                 <div class="button">
-                    <img src="./images/paper.svg" alt="Paper" id="btn--paper">
+                    <img src="./images/paper.svg" alt="Paper" id="btn--paper" />
                     <p>Paper</p>
                 </div>
                 <!-- Scissors -->
                 <div class="button">
-                    <img src="./images/scissors.svg" alt="Scissors" id="btn--scissors">
+                    <img
+                        src="./images/scissors.svg"
+                        alt="Scissors"
+                        id="btn--scissors"
+                    />
                     <p>Scissors</p>
                 </div>
-            <!-- End of Buttons -->
+                <!-- End of Buttons -->
             </div>
-            
+
             <!-- Message -->
-            <div class="display hidden">
-            <!-- End of Message -->
+            <div class="display--round-message hidden">
+                <!-- End of Message -->
             </div>
 
             <!-- Game Over -->
             <div class="game-over hidden">
-                <h1>Game Over</h1>
-            <!-- End of Game Over -->
+                <!-- Close button -->
+                <button class="close-modal">&times;</button>
+                <!-- Text -->
+                <div class="text">
+                    <!-- Title -->
+                    <div>
+                        <h1>Game Over</h1>
+                        <p id="display--game-verdict"></p>
+                        <!-- End of Title -->
+                    </div>
+                    <div id="display--game-over-message"></div>
+                    <!-- New Game Button -->
+                    <button id="btn--new" class="hidden">New Game</button>
+                    <!-- End of Text -->
+                </div>
+                <!-- End of Game Over -->
             </div>
-            
-            <button id="btn--new" class="hidden">New Game</button>
-        <!-- End of Container -->
+            <!-- Overlay -->
+            <!-- End of Container -->
         </div>
+        <div class="overlay hidden"></div>
     </body>
     <script src="rock-paper-scissors.js"></script>
 </html>
