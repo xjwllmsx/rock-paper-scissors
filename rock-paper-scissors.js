@@ -21,6 +21,7 @@ const endGameMessage = document.createElement('p');
 // Starting conditions
 let playerScore, computerScore, playing;
 
+// Initialization
 const init = function () {
     playerScore = 0;
     computerScore = 0;
@@ -35,6 +36,7 @@ const init = function () {
 };
 init();
 
+// Restart Game
 btnNewGame.addEventListener('click', init);
 btnCloseModal.addEventListener('click', init);
 document.addEventListener('keydown', function (e) {
@@ -48,110 +50,99 @@ const getComputerChoice = function () {
     // Randomly generate a number between 1 & 3 and assign it to the variable computerChoice
     let computerChoice = Math.floor(Math.random() * 3) + 1;
     if (computerChoice === 1) {
-        computerChoice = 'rock';
+        computerChoice = 'Rock';
     } else if (computerChoice === 2) {
-        computerChoice = 'paper';
+        computerChoice = 'Paper';
     } else {
-        computerChoice = 'scissors';
+        computerChoice = 'Scissors';
     }
     return computerChoice;
 };
 
+// Round game function
 const playRound = function (playerSelection, computerSelection) {
     // Displays the player's choice
     displayRoundMessage.classList.remove('hidden');
-    displayPlayerChoice.textContent = `You chose: ${
-        playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-    }`;
+    displayPlayerChoice.textContent = `You chose: ${playerSelection}`;
     displayRoundMessage.appendChild(displayPlayerChoice);
 
     // Displays the computer's choice
     displayRoundMessage.classList.remove('hidden');
-    displayComputerChoice.textContent = `Computer chose: ${
-        computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-    }`;
+    displayComputerChoice.textContent = `Computer chose: ${computerSelection}`;
     displayRoundMessage.appendChild(displayComputerChoice);
+
     // If the player's choice beats the computer's choice
     if (
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')
+        (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+        (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+        (playerSelection === 'Scissors' && computerSelection === 'Paper')
     ) {
-        displayGameResults.textContent = `${
-            playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-        } beats ${computerSelection}. You win! 🏆`;
+        displayGameResults.textContent = `${playerSelection} beats ${computerSelection}. You win! 🏆`;
         displayRoundMessage.appendChild(displayGameResults);
         displayPlayerScore.textContent = `${++playerScore}`;
         return playerScore;
+
         // If the computer's choice beats the player's choice
     } else if (
-        (computerSelection === 'rock' && playerSelection === 'scissors') ||
-        (computerSelection === 'paper' && playerSelection === 'rock') ||
-        (computerSelection === 'scissors' && playerSelection === 'paper')
+        (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
+        (computerSelection === 'Paper' && playerSelection === 'Rock') ||
+        (computerSelection === 'Scissors' && playerSelection === 'Paper')
     ) {
-        displayGameResults.textContent = `${
-            computerSelection.charAt(0).toUpperCase() +
-            computerSelection.slice(1)
-        } beats ${playerSelection}. You lose 😢`;
+        displayGameResults.textContent = `${computerSelection} beats ${playerSelection}. You lose 😢`;
         displayRoundMessage.appendChild(displayGameResults);
         displayComputerScore.textContent = `${++computerScore}`;
         return computerScore;
+
         // If the player's choice and the computer's choice is the same
     } else if (playerSelection === computerSelection) {
         displayGameResults.textContent = 'Tie game';
         displayRoundMessage.appendChild(displayGameResults);
-        return 'tie';
     }
 };
 
-const playerWinsGame = function () {
+// Message to appear after someone wins the game
+const winnerAnnouncement = function (gameVerdictString, endGameMessageString) {
     playing = false;
     overlay.classList.remove('hidden');
     gameOver.classList.remove('hidden');
-    gameVerdict.textContent = '🎉 You win! 🎉';
+    gameVerdict.textContent = gameVerdictString;
     gameOverMessage.appendChild(endGameMessage);
-    endGameMessage.textContent = `You annihilated the computer! Think you can win again? Click on the button below to find out.`;
+    endGameMessage.textContent = endGameMessageString;
     btnNewGame.classList.remove('hidden');
 };
 
-const computerWinsGame = function () {
-    playing = false;
-    overlay.classList.remove('hidden');
-    gameOver.classList.remove('hidden');
-    gameVerdict.textContent = 'You lose 😭';
-    gameOverMessage.appendChild(endGameMessage);
-    endGameMessage.textContent = `Nice try, but it looks like the Computer bested you this time. Click on the button below to try again.`;
-    btnNewGame.classList.remove('hidden');
+// Runs end of game message after someone wins
+const declareWinner = function () {
+    if (playerScore === 5) {
+        winnerAnnouncement(
+            '🎉 You win! 🎉',
+            `You annihilated the computer! Think you can win again? Click on the button below to find out.`
+        );
+    } else if (computerScore === 5) {
+        winnerAnnouncement(
+            'You lose 😭',
+            `Nice try, but it looks like the Computer bested you this time. Click on the button below to try again.`
+        );
+    }
 };
 
 btnRock.addEventListener('click', function () {
     if (playing) {
-        playRound('rock', getComputerChoice());
+        playRound('Rock', getComputerChoice());
     }
-    if (playerScore === 5) {
-        playerWinsGame();
-    } else if (computerScore === 5) {
-        computerWinsGame();
-    }
+    declareWinner();
 });
+
 btnPaper.addEventListener('click', function () {
     if (playing) {
-        playRound('paper', getComputerChoice());
+        playRound('Paper', getComputerChoice());
     }
-
-    if (playerScore === 5) {
-        playerWinsGame();
-    } else if (computerScore === 5) {
-        computerWinsGame();
-    }
+    declareWinner();
 });
+
 btnScissors.addEventListener('click', function () {
     if (playing) {
-        playRound('scissors', getComputerChoice());
+        playRound('Scissors', getComputerChoice());
     }
-    if (playerScore === 5) {
-        playerWinsGame();
-    } else if (computerScore === 5) {
-        computerWinsGame();
-    }
+    declareWinner();
 });
