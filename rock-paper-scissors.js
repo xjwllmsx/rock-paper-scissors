@@ -45,17 +45,15 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+const choices = [
+    'Rock',
+    'Paper',
+    'Scissors'
+]
+
 // Generates the Computer's choice
 const getComputerChoice = function () {
-    // Randomly generate a number between 1 & 3 and assign it to the variable computerChoice
-    let computerChoice = Math.floor(Math.random() * 3) + 1;
-    if (computerChoice === 1) {
-        computerChoice = 'Rock';
-    } else if (computerChoice === 2) {
-        computerChoice = 'Paper';
-    } else {
-        computerChoice = 'Scissors';
-    }
+    let computerChoice = choices[Math.floor(Math.random() * 3)];
     return computerChoice;
 };
 
