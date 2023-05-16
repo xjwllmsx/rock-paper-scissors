@@ -1,5 +1,5 @@
 body {
-    background-image: url(./images/rps-background.svg);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%), url(./images/rps-background.svg), #0B1037;;
     font-family: 'Gaegu', cursive;
     color: white;
     margin: 0;
@@ -17,7 +17,6 @@ body {
 }
 
 h1 {
-    font-family: 'Gaegu', cursive;
     font-size: 48px;
     font-weight: 700;
     line-height: 60px;
