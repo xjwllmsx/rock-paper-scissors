@@ -19,7 +19,7 @@ const displayGameResults = document.createElement('p');
 const endGameMessage = document.createElement('p');
 
 // Starting conditions
-let playerScore, computerScore, playing;
+let playerScore, computerScore, playing; // Think about adding playerScore and computerScore to an array called scores
 
 // Initialization
 const init = function () {
@@ -45,11 +45,7 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-const choices = [
-    'Rock',
-    'Paper',
-    'Scissors'
-]
+const choices = ['Rock', 'Paper', 'Scissors'];
 
 // Generates the Computer's choice
 const getComputerChoice = function () {
@@ -59,21 +55,23 @@ const getComputerChoice = function () {
 
 // Round game function
 const playRound = function (playerSelection, computerSelection) {
-    // Displays the player's choice
-    displayRoundMessage.classList.remove('hidden');
-    displayPlayerChoice.textContent = `You chose: ${playerSelection}`;
-    displayRoundMessage.appendChild(displayPlayerChoice);
-
-    // Displays the computer's choice
-    displayRoundMessage.classList.remove('hidden');
-    displayComputerChoice.textContent = `Computer chose: ${computerSelection}`;
-    displayRoundMessage.appendChild(displayComputerChoice);
+    // Displays player and computer choice
+    const displayChoice = function (message, element) {
+        displayRoundMessage.classList.remove('hidden');
+        element.textContent = message;
+        displayRoundMessage.appendChild(element);
+    };
+    displayChoice(`You chose: ${playerSelection}`, displayPlayerChoice);
+    displayChoice(
+        `Computer chose: ${computerSelection}`,
+        displayComputerChoice
+    );
 
     // If the player's choice beats the computer's choice
     if (
-        (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
-        (playerSelection === 'Paper' && computerSelection === 'Rock') ||
-        (playerSelection === 'Scissors' && computerSelection === 'Paper')
+        (playerSelection === choices[0] && computerSelection === choices[2]) ||
+        (playerSelection === choices[1] && computerSelection === choices[0]) ||
+        (playerSelection === choices[2] && computerSelection === choices[1])
     ) {
         displayGameResults.textContent = `${playerSelection} beats ${computerSelection}. You win! 🏆`;
         displayRoundMessage.appendChild(displayGameResults);
@@ -82,9 +80,9 @@ const playRound = function (playerSelection, computerSelection) {
 
         // If the computer's choice beats the player's choice
     } else if (
-        (computerSelection === 'Rock' && playerSelection === 'Scissors') ||
-        (computerSelection === 'Paper' && playerSelection === 'Rock') ||
-        (computerSelection === 'Scissors' && playerSelection === 'Paper')
+        (computerSelection === choices[0] && playerSelection === choices[2]) ||
+        (computerSelection === choices[1] && playerSelection === choices[0]) ||
+        (computerSelection === choices[2] && playerSelection === choices[1])
     ) {
         displayGameResults.textContent = `${computerSelection} beats ${playerSelection}. You lose 😢`;
         displayRoundMessage.appendChild(displayGameResults);
@@ -98,19 +96,22 @@ const playRound = function (playerSelection, computerSelection) {
     }
 };
 
-// Message to appear after someone wins the game
-const winnerAnnouncement = function (gameVerdictString, endGameMessageString) {
-    playing = false;
-    overlay.classList.remove('hidden');
-    gameOver.classList.remove('hidden');
-    gameVerdict.textContent = gameVerdictString;
-    gameOverMessage.appendChild(endGameMessage);
-    endGameMessage.textContent = endGameMessageString;
-    btnNewGame.classList.remove('hidden');
-};
-
 // Runs end of game message after someone wins
 const declareWinner = function () {
+    // Message to appear after someone wins the game
+    const winnerAnnouncement = function (
+        gameVerdictString,
+        endGameMessageString
+    ) {
+        playing = false;
+        overlay.classList.remove('hidden');
+        gameOver.classList.remove('hidden');
+        gameVerdict.textContent = gameVerdictString;
+        gameOverMessage.appendChild(endGameMessage);
+        endGameMessage.textContent = endGameMessageString;
+        btnNewGame.classList.remove('hidden');
+    };
+
     if (playerScore === 5) {
         winnerAnnouncement(
             '🎉 You win! 🎉',
