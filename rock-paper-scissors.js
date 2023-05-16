@@ -126,21 +126,21 @@ const declareWinner = function () {
 
 btnRock.addEventListener('click', function () {
     if (playing) {
-        playRound('Rock', getComputerChoice());
+        playRound(choices[0], getComputerChoice());
     }
     declareWinner();
 });
 
 btnPaper.addEventListener('click', function () {
     if (playing) {
-        playRound('Paper', getComputerChoice());
+        playRound(choices[1], getComputerChoice());
     }
     declareWinner();
 });
 
 btnScissors.addEventListener('click', function () {
     if (playing) {
-        playRound('Scissors', getComputerChoice());
+        playRound(choices[2], getComputerChoice());
     }
     declareWinner();
 });
