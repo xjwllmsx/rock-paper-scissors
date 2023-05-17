@@ -93,7 +93,6 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    background-color: white;
     padding: 6rem;
     border-radius: 20px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
